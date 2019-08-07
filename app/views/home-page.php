@@ -1,5 +1,5 @@
 <?php
-require_once  __DIR__ . '/header.php';
+$this->layout('layout',['title' => 'Homepage']);
 ?>
   
 
@@ -67,18 +67,13 @@ require_once  __DIR__ . '/header.php';
           <?php endforeach;?>
           </div>
 
-<?php
-require_once  __DIR__ . '/partials/sidebar.php';
-?>
+<?php $this->insert('partials/sidebar'); ?>
      </div>
     
   </div>
      
   </div>
-
-<?php  
-require_once  __DIR__ . '/partials/pagination.php';
-?> 
+<?php $this->insert('partials/pagination'); ?>
         <!--Pagination-->
 
       </section>
@@ -87,7 +82,3 @@ require_once  __DIR__ . '/partials/pagination.php';
     </div>
   </main>
   <!--Main layout-->
-<?php
-require_once  __DIR__ . '/footer.php';
-?>
-  

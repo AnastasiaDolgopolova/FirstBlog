@@ -1,5 +1,5 @@
 <?php
-require_once  __DIR__ . '/header.php';
+$this->layout('layout',['title' => 'Categories']);
 ?>
 
   <main class="mt-5 pt-5">
@@ -134,8 +134,3 @@ require_once  __DIR__ . '/header.php';
 
     </div>
   </main>
-
-
-  <?php
-require_once  __DIR__ . '/footer.php';
-?>

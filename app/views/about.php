@@ -1,6 +1,5 @@
 <?php
-include  __DIR__ . '/../views/header.php';
-//$this->layout('layout', ['title' => 'About']);
+$this->layout('layout',['title' => 'About']);
 ?>
 <main class="mt-5 pt-5">
     <div class="container">
@@ -31,3 +30,5 @@ include  __DIR__ . '/../views/header.php';
         </div>
         <!-- Content -->
       </section>
+  </div>
+</main>

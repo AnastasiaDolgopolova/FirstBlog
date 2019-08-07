@@ -1,6 +1,5 @@
-<?php 
-include  __DIR__ . '/../header.php';
-//$this->layout('layout', ['title' => 'Authorization']);
+<?php
+$this->layout('layout',['title' => 'Authorization']);
 ?>
 
 <div class="container my-5 h-100" style="background-color: #F5F5F5">
@@ -23,8 +22,3 @@ include  __DIR__ . '/../header.php';
       </form>
     </div>
   </div>
-</body>
-</html>
-<?php
-require_once  __DIR__ . '/../footer.php';
-?>

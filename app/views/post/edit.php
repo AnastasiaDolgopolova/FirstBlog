@@ -1,10 +1,5 @@
 <?php
-require_once  __DIR__ . '/../header.php';
-include __DIR__ . '/../../model/functions.php';
-$db =include __DIR__ . '/../../model/database/start.php';
-$id = $_GET['id'];
-$post = $db->getOne('posts', $id);
-//dd($post);
+$this->layout('layout',['title' => 'Update']);
 ?>
 
     <div class="container">
@@ -39,8 +34,4 @@ $post = $db->getOne('posts', $id);
       </div>
     </div>
   </div>
-</body>
-</html>
-<?php
-require_once  __DIR__ . '/../footer.php';
-?>
+

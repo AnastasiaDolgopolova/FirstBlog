@@ -1,5 +1,6 @@
 <?php
-require_once  __DIR__ . '/../header.php';
+
+$this->layout('layout',['title' => 'Adminpanel']);
 ?>
 
   <main class="pt-5"  style="background-color: #F5F5F5">
@@ -131,8 +132,3 @@ require_once  __DIR__ . '/../header.php';
 
     </div>
   </main>
-
-<?php
-require_once  __DIR__ . '/../footer.php';
-?>
-  

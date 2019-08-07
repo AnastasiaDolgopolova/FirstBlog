@@ -1,9 +1,5 @@
 <?php
-require_once  __DIR__ . '/../../header.php';
-include __DIR__ . '/../../../model/functions.php';
-//$db =include __DIR__ . '/../../../model/database/start.php';
-//$post = $db->getOne('posts', $id);
-//dd($post);
+$this->layout('layout',['title' => 'Edit']);
 ?>
 
     <div class="container" >
@@ -31,8 +27,4 @@ include __DIR__ . '/../../../model/functions.php';
       </div>
     </div>
   </div>
-</body>
-</html>
-<?php
-require_once  __DIR__ . '/../../footer.php';
-?>
+  

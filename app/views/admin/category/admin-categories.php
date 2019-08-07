@@ -1,5 +1,6 @@
-<?php 
-require_once  __DIR__ . '/../../header.php';
+<?php
+$this->layout('layout',['title' => 'Categorypanel']);
+
 //$this->layout('layout', ['title' => 'Postspage']);
 
 //var_dump($templates);die;
@@ -55,6 +56,3 @@ require_once  __DIR__ . '/../../header.php';
     </div>
   </div>
 </div>
-<?php
-require_once  __DIR__ . '/../../footer.php';
-?>

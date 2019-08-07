@@ -1,11 +1,5 @@
 <?php
-require_once  __DIR__ . '/../header.php';
-use App\Model\Post\Post;
-
-$newPost=new Post;
-$post = $newPost->show('posts', $_GET['id']);
-//var_dump($getPost);
-//die;
+$this->layout('layout',['title' => 'Post']);
 ?>
 
   <!--Main layout-->
@@ -54,23 +48,14 @@ $post = $newPost->show('posts', $_GET['id']);
             </div>
             <!--/.Card-->
 
-     <!--Comments-->   
-<?php  
-require_once  __DIR__ . '/../partials/comments.php';
-?>    
-
+     <!--Comments--> 
+<?php $this->insert('partials/comments'); ?>   
           </div>
          
-<?php  
-require_once  __DIR__ . '/../partials/sidebar.php';
-?> 
+<?php $this->insert('partials/sidebar'); ?>
   </div>
 
  </section>
 
     </div>
   </main>
-
-<?php
-require_once  __DIR__ . '/../footer.php';
-?>

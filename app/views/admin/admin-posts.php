@@ -1,8 +1,6 @@
-<?php 
-require_once  __DIR__ . '/../header.php';
-//$this->layout('layout', ['title' => 'Postspage']);
+<?php
+$this->layout('layout',['title' => 'Postspanel']);
 
-//var_dump($templates);die;
 use App\Model\Post\Post;
 
 $post=new Post;
@@ -53,6 +51,3 @@ $posts=$post->getAll('posts');
     </div>
   </div>
 </div>
-<?php
-require_once  __DIR__ . '/../footer.php';
-?>

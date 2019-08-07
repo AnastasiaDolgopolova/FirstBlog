@@ -1,6 +1,5 @@
-<?php 
-require_once  __DIR__ . '/../header.php';
-//$this->layout('layout', ['title' => 'Error 404']);
+<?php
+$this->layout('layout',['title' => 'My profile']);
 ?>
 
 <div class="container" >
@@ -57,7 +56,3 @@ require_once  __DIR__ . '/../header.php';
                 </div>           
             </div>
         </div>
-
-<?php
-require_once  __DIR__ . '/../footer.php';
-?>

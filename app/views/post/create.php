@@ -1,6 +1,5 @@
 <?php 
-require_once  __DIR__ . '/../header.php';
-//$this->layout('layout', ['title' => 'Add Post']);
+$this->layout('layout', ['title' => 'Add Post']);
 ?>
     <div class="container">
       <div class="row">
@@ -30,8 +29,3 @@ require_once  __DIR__ . '/../header.php';
       </div>
     </div>
   </div>
-</body>
-</html>
-<?php
-require_once  __DIR__ . '/../footer.php';
-?>

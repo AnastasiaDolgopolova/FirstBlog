@@ -1,6 +1,5 @@
-<?php 
-include  __DIR__ . '/../views/header.php';
-//$this->layout('layout', ['title' => 'Error 404']);
+<?php
+$this->layout('layout',['title' => 'Error 404']);
 ?>
 <section id="wrapper" class="container-fluid mt-5">
 	
@@ -12,6 +11,3 @@ include  __DIR__ . '/../views/header.php';
             <a href="/" class="btn btn-success">Back</a> </div>
     </div>
 </section>
-
-</body>
-</html>

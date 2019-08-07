@@ -1,6 +1,7 @@
 <?php
-require_once  __DIR__ . '/../header.php';
+$this->layout('layout',['title' => 'Myposts']);
 ?>
+
 <main class="pt-5" style="background-color: #F5F5F5">
     <div class="container">
       <a href="/add" class="btn btn-outline-success float-right"><i class="fa fa-plus mr-2"></i>Add Post</a>
@@ -118,7 +119,3 @@ require_once  __DIR__ . '/../header.php';
 
     </div>
   </main>
-
-<?php
-require_once  __DIR__ . '/../footer.php';
-?>
