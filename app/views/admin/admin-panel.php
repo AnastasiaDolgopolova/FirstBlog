@@ -89,7 +89,7 @@ $this->layout('layout',['title' => 'Adminpanel']);
       
                 <h4 class="green-text card-title">Categories</h4>
                 
-                <a href="/categories" class="btn btn-primary btn-md">Category control
+                <a href="/categorycontrol" class="btn btn-primary btn-md">Category control
                   <i class="fas fa-list-ul ml-2"></i>
                 </a>
               </div>

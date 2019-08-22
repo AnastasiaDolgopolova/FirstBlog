@@ -1,7 +1,6 @@
   <div class="col-md-4 mb-4">
 
   	<!--Auth form -->
-    <!--
   	  <div class="card mb-4 text-center wow fadeIn">
 
      <div class="card-header">Log in to post comments and articles</div>
@@ -24,12 +23,12 @@
       </form>
    </div>
 
-  </div> -->
+  </div>
 <!-- /Auth form-->
 <!-- User Profile-->
 <div class="card mb-4 text-center wow fadeIn">
-  <div class="card-header">My profile
-    <a href="/profile"><i class="fa fa-edit ml-3"></i></a>
+  <div class="card-header">
+    <a href="/profile" >My profile<i class="fa fa-edit ml-3"></i></a>
   </div>
     <div class="card-body">
       <div class="mx-5 my-5">
@@ -43,10 +42,14 @@
 </div>
 </div>
 <!-- /User Profile-->
+
+
 <!-- Categories -->
  <div class="card mb-4 wow fadeIn">
 
-      <div class="card-header">Categories</div>
+      <div class="card-header">
+        <a href="/categories">Categories</a>
+      </div>
         <div class="card-body">
 
          <ul class="list-unstyled">
@@ -90,7 +93,10 @@
 
 <!-- Other Posts -->
  <div class="card mb-4 wow fadeIn">
-       <div class="card-header">Other posts from the category</div>
+       <div class="card-header">
+         <a href="/categoryposts" >Other posts from the category</a>
+
+       </div>
 
           <div class="card-body">
 

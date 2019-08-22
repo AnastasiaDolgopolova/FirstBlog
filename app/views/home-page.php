@@ -45,7 +45,7 @@ $this->layout('layout',['title' => 'Homepage']);
 
               <div class="view overlay">
                 <img class="card-img-top" src="/../uploads/<?=$post['image'] ?>" alt="">
-                <a href="/show?id=<?php echo $post['id'];?>">
+                <a href="/show/<?= $post['id']?>">
                   <div class="mask rgba-white-slight"></div>
                 </a>
               </div>
@@ -57,7 +57,7 @@ $this->layout('layout',['title' => 'Homepage']);
                 <hr>
               
                 <p class="card-text"><?php echo $post['description'] ?></p>
-                <a href="/show?id=<?php echo $post['id'];?>" target="_blank">Read more
+                <a href="/show/<?= $post['id'];?>" >Read more
                   <i class="fas fa-play ml-2"></i>
                 </a>
               </div>
@@ -67,13 +67,13 @@ $this->layout('layout',['title' => 'Homepage']);
           <?php endforeach;?>
           </div>
 
-<?php $this->insert('partials/sidebar'); ?>
+<?php $this->insert('/partials/sidebar'); ?>
      </div>
     
   </div>
      
   </div>
-<?php $this->insert('partials/pagination'); ?>
+<?php $this->insert('/partials/pagination'); ?>
         <!--Pagination-->
 
       </section>

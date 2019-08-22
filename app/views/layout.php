@@ -1,5 +1,5 @@
-<?php $this->insert('partials/header'); ?>
+<?php $this->insert('/partials/header'); ?>
 
  <?= $this->section('content'); ?>
 
-<?php $this->insert('partials/footer'); ?>
+<?php $this->insert('/partials/footer'); ?>

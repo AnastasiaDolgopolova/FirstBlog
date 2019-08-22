@@ -21,7 +21,7 @@ $this->layout('layout',['title' => 'Myposts']);
         
         <div class="row mt-3 wow fadeIn">
 
-          <div class="col-lg-5 col-xl-4 mb-4">
+          <div class="col-lg-5 col-xl-4 mb-4 ">
             <div class="view overlay rounded z-depth-1">
               <img src="https://mdbootstrap.com/wp-content/uploads/2017/11/brandflow-tutorial-fb.jpg" class="img-fluid"
                 alt="">

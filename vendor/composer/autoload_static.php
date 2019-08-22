@@ -10,9 +10,15 @@ class ComposerStaticInit00c13b7393e4bf1ba9135e5728b08c9c
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '72579e7bd17821bb1321b87411366eae' => __DIR__ . '/..' . '/illuminate/support/helpers.php',
         '3917c79c5052b270641b5a200963dbc2' => __DIR__ . '/..' . '/kint-php/kint/init.php',
+        '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
+        '6157b075b923803e5ef157aeb43b83bd' => __DIR__ . '/..' . '/tamtamchik/simple-flash/src/function.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'T' => 
+        array (
+            'Tamtamchik\\SimpleFlash\\' => 23,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
@@ -37,6 +43,10 @@ class ComposerStaticInit00c13b7393e4bf1ba9135e5728b08c9c
             'Illuminate\\Support\\' => 19,
             'Illuminate\\Contracts\\' => 21,
         ),
+        'F' => 
+        array (
+            'FastRoute\\' => 10,
+        ),
         'D' => 
         array (
             'Doctrine\\Common\\Inflector\\' => 26,
@@ -53,6 +63,10 @@ class ComposerStaticInit00c13b7393e4bf1ba9135e5728b08c9c
     );
 
     public static $prefixDirsPsr4 = array (
+        'Tamtamchik\\SimpleFlash\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tamtamchik/simple-flash/src',
+        ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
@@ -88,6 +102,10 @@ class ComposerStaticInit00c13b7393e4bf1ba9135e5728b08c9c
         'Illuminate\\Contracts\\' => 
         array (
             0 => __DIR__ . '/..' . '/illuminate/contracts',
+        ),
+        'FastRoute\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nikic/fast-route/src',
         ),
         'Doctrine\\Common\\Inflector\\' => 
         array (

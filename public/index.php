@@ -4,37 +4,72 @@ require "../vendor/autoload.php";
 use League\Plates\Engine;
 $templates = new League\Plates\Engine('../app/views');
 
-$routes = [
-    "/" => 'app/controllers/homepage.php',
-    "/about" => 'app/views/about.php',
-    "/add" => 'app/views/post/create.php',
-    "/delete" => 'app/controllers/delete.php',
-    "/edit" => 'app/controllers/edit.php',
-    "/show" => 'app/controllers/show.php',
-    "/store" => 'app/controllers/store.php',
-    "/update" => 'app/controllers/update.php',
-    "/login" =>   'app/views/auth/authorization.php',
-    "/register" =>   'app/views/auth/register.php',
-    "/adminpanel" => 'app/controllers/adminpanel.php',
-    "/postcontrol" => 'app/views/admin/admin-posts.php',
-    "/profile" => 'app/views/user/profile.php',
-    "/editpassword" => 'app/views/user/editpass.php',
-    "/myposts" => 'app/views/user/userposts.php',
-    "/categoryposts" => 'app/views/category-page.php',
-    "/categories" => 'app/views/admin/category/admin-categories.php',
-    "/addcategory" => 'app/views/admin/category/create.php',
-    "/editcategory" => 'app/views/admin/category/edit.php'
-];
+$dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
+    $r->addRoute('GET', '/', ['App\controllers\HomeController', 'homepage']);
+    $r->addRoute('GET', '/about', ['App\controllers\HomeController', 'about']);
 
-$route = $_SERVER['REQUEST_URI'];
 
-$get_param = stripos($route, '?');//использование функция strpos ( поиск вхождения одной строки в другую) при сопоставлении роута и url'a;
-if($get_param !== false){
-    $route = substr($route, 0, $get_param);
+    $r->addRoute('GET', '/add', ['App\controllers\PostController', 'add']);
+    $r->addRoute('GET', '/delete/{id:\d+}', ['App\controllers\PostController', 'delete']);
+    $r->addRoute('GET', '/edit/{id:\d+}', ['App\controllers\PostController', 'edit']);
+    $r->addRoute('GET', '/show/{id:\d+}', ['App\controllers\PostController', 'show']);
+    $r->addRoute('POST', '/store', ['App\controllers\PostController', 'create']);
+    $r->addRoute('POST', '/update/{id:\d+}', ['App\controllers\PostController', 'update']);
+
+
+
+    $r->addRoute('GET', '/login', ['App\controllers\LoginController', 'index']);
+    $r->addRoute('GET', '/register', ['App\controllers\RegisterController', 'index']);
+
+
+
+    $r->addRoute('GET', '/adminpanel', ['App\controllers\HomeController', 'adminPanel']);
+    $r->addRoute('GET', '/postcontrol', ['App\controllers\PostController', 'controlPost']);
+    $r->addRoute('GET', '/categorycontrol', ['App\controllers\CategoryController', 'control']);
+
+
+    $r->addRoute('GET', '/profile', ['App\controllers\UserController', 'userProfile']);
+    $r->addRoute('GET', '/editpassword', ['App\controllers\UserController', 'changePassword']);
+    $r->addRoute('GET', '/myposts', ['App\controllers\UserController', 'userPosts']);
+
+
+    $r->addRoute('GET', '/categoryposts', ['App\controllers\CategoryController', 'getCategory']);
+    $r->addRoute('GET', '/categories', ['App\controllers\CategoryController', 'getAll']);
+    $r->addRoute('GET', '/addcategory', ['App\controllers\CategoryController', 'create']);
+    $r->addRoute('GET', '/editcategory', ['App\controllers\CategoryController', 'edit']);
+
+
+
+
+    // The /{title} suffix is optional
+    $r->addRoute('GET', '/articles/{id:\d+}[/{title}]', 'get_article_handler');
+});
+
+// Fetch method and URI from somewhere
+$httpMethod = $_SERVER['REQUEST_METHOD'];
+$uri = $_SERVER['REQUEST_URI'];
+
+// Strip query string (?foo=bar) and decode URI
+if (false !== $pos = strpos($uri, '?')) {
+    $uri = substr($uri, 0, $pos);
 }
-if(array_key_exists($route, $routes)) {
-    require_once __DIR__ . '/../'. $routes[$route];
-    die;
-} else {
-    require_once __DIR__ . '/../app/views/404.php';
+$uri = rawurldecode($uri);
+
+$routeInfo = $dispatcher->dispatch($httpMethod, $uri);
+switch ($routeInfo[0]) {
+    case FastRoute\Dispatcher::NOT_FOUND:
+        echo $templates->render('404');
+        break;
+    case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
+        $allowedMethods = $routeInfo[1];
+        // ... 405 Method Not Allowed
+        echo "Не разрешен";
+        break;
+    case FastRoute\Dispatcher::FOUND:
+        $handler = $routeInfo[1];
+        $vars = $routeInfo[2];
+        $controller = new $handler[0];
+
+        call_user_func([$controller,$handler[1]],$vars);
+        break;
 }

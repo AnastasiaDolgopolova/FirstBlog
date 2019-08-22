@@ -1,8 +1,6 @@
 <?php
-$this->layout('layout',['title' => 'Post']);
+$this->layout('layout',['title' => $post['title']]);
 ?>
-
-  <!--Main layout-->
   <main class="pt-5" style="background-color: #F5F5F5">
     
     <div class="container">
@@ -10,24 +8,17 @@ $this->layout('layout',['title' => 'Post']);
         </h1>
       <!--Section: Post-->
       <section class="mt-4">
-
-        <!--Grid row-->
         <div class="row">
-
-          <!--Grid column-->
           <div class="col-md-8 mb-4">
 
-            <!--Featured Image-->
             <div class="card mb-4 wow fadeIn">
 
               <img src="/../uploads/<?=$post['image'] ?>"  class="img-fluid" alt="">
 
             </div>
-            <!--/.Featured Image-->
             <!--Card-->
             <div class="card mb-4 wow fadeIn">
 
-              <!--Card content-->
               <div class="card-body">
 
                 <p class="h5 my-4"><?=  $post['title']; ?></p>
@@ -49,10 +40,10 @@ $this->layout('layout',['title' => 'Post']);
             <!--/.Card-->
 
      <!--Comments--> 
-<?php $this->insert('partials/comments'); ?>   
+<?php $this->insert('/partials/comments'); ?>   
           </div>
          
-<?php $this->insert('partials/sidebar'); ?>
+<?php $this->insert('/partials/sidebar'); ?>
   </div>
 
  </section>

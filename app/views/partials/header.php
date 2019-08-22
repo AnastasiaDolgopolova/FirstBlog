@@ -7,9 +7,9 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title><?=$this->e($title)?></title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/mdb.min.css" rel="stylesheet">
-  <link href="css/style.min.css" rel="stylesheet">
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/mdb.min.css" rel="stylesheet">
+  <link href="/css/style.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -75,7 +75,7 @@
               </a>
             </li>
             <li class="nav-item">
-            <a class="btn btn-outline-info ml-4 " href="/adminpanel">Admin Panel</a>
+            <a class="btn btn-outline-info ml-4 " href="/adminpanel" target="_blank">Admin Panel</a>
             </li>
           </ul>
 
