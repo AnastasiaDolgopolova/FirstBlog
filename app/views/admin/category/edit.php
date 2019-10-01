@@ -1,19 +1,19 @@
 <?php
-$this->layout('layout',['title' => 'Edit']);
+$this->layout('layout');
 ?>
 
     <div class="container" >
       <div class="row" style="background-color: #F5F5F5">
         <div class="col-md-8 offet-md-2 my-5 py-5" >
-         <form action="/update?id=<?php echo $post['id'];?>" method="POST" enctype="multipart/form-data">
+         <form action="/updatecategory/<?= $category['id'];?>" method="POST" enctype="multipart/form-data">
           <div class="form-group">
               <label for="">Category title</label>
-              <input type="text" name="title" class="form-control" value="<?php echo $post['title'];?>">
+              <input type="text" name="title" class="form-control" value="<?php echo $category['title'];?>">
           </div>
           
         <div class="form-group mt-5">
-           <img src="/../uploads/<?=$post['image'] ?>" alt="" width="200" >    
-            <input type="hidden" name="oldImage" value="<? echo $post['image'] ?>">
+           <img src="/../uploads/<?= $category['image'] ?>" alt="" width="200" >    
+            <input type="hidden" name="oldImage" value="<? echo $category['image'] ?>">
         </div>
          <div class="form-group">
             <label >Add image</label>
@@ -21,7 +21,7 @@ $this->layout('layout',['title' => 'Edit']);
          </div>
           <div class="form-group">
               <button class="btn btn-outline-success">Edit Category</button>
-              <a href="/categories" class="btn btn-outline-info">Back</a>
+              <a href="/categorycontrol" class="btn btn-outline-info">Back</a>
           </div>
         </form>
       </div>

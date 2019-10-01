@@ -18,6 +18,8 @@ class Post
 	public function show($table,$id)
 	{
 		$post = $this->db->getOne($table, $id);
+	
+		var_dump($post);die;
 		return $post;
 	}
 
@@ -74,6 +76,7 @@ class Post
 				'title' => $_POST['title'],
 				'description' => $_POST['description'],
 				'text' => $_POST['text'],
+				'category_id' => $_POST['category'],
 				'image' => $filename
 			], 
 			$id);

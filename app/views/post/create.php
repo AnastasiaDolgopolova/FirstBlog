@@ -14,7 +14,17 @@ $this->layout('layout', ['title' => 'Add Post']);
           <label >Add image</label>
           <input type="file" class="form-control-file" name="image">
          </div>
-         
+
+
+         <div class="form-group my-3">
+          <label for="">Category</label>
+            <select class="form-control" name="category">
+                <?php foreach ($categories as $category): ?>
+                <option value="<?=$category['category_id'] ?>"><?=$category['title'] ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
           <label for="">Description</label>
           <div class="form-group">
             <textarea name="description" class="form-control"rows="2" cols="60" maxlength="250"></textarea>

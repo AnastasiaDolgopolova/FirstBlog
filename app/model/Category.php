@@ -1,5 +1,5 @@
 <?php
-namespace App\Model\Admin;
+namespace App\Model;
 
 use App\Model\Post;
 use App\Model\Classes\ImageManager;
@@ -45,7 +45,7 @@ class Category
 					'title' => $_POST['title'],
 					'image' => $filename
 				]);
-				header('Location: /');
+				header('Location: /categorycontrol');
 				}
 			}
 			if($errorMessage) {
@@ -55,7 +55,7 @@ class Category
 			}
 	}
 
-	public function update($table,$data,$img)
+	public function update($table,$data,$img,$id)
 	{
 		$cleanData=Validator::clean($data);
 		 $Validator= new Validator;
@@ -65,7 +65,7 @@ class Category
 			if(!empty($img['tmp_name'])){
 				$image = new ImageManager($img);
 				$filename=$image->uploadImage();
-				$image->deleteImage($_POST['oldImage']);
+				//$image->deleteImage($_POST['oldImage']);
 			}else{$filename = $_POST['oldImage'];
 			  }
 			$isImg=$Validator->imgEmpty($filename);
@@ -77,7 +77,7 @@ class Category
 			$id);
 
 
-			header('Location: /');
+			header('Location: /categorycontrol');
 			}
 }
 	if($errorMessage) {
@@ -98,7 +98,7 @@ class Category
 		if(!empty ($img)){
 		$this->deleteImage($img);
 		}
-		header('Location: /');
+		
 
 	}
 }

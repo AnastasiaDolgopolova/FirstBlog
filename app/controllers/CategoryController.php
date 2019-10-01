@@ -1,14 +1,14 @@
 <?php
 namespace App\Controllers;
 
-use App\Model\Post;
+use App\Model\Category;
 use League\Plates\Engine;
 
 class CategoryController
 {
 	public function __construct()
     {
-        $this->category= new Post;
+        $this->category= new Category;
         $this->templates = new Engine('../app/views');
     }
 	
@@ -32,8 +32,8 @@ class CategoryController
 
 	public function control()
 	{
-		$category = $this->category->getAll('category');
-        echo $this->templates->render('admin/category/admin-categories');
+		$categoryes = $this->category->getAll('category');
+        echo $this->templates->render('admin/category/admin-categories', ['categoryes' => $categoryes]);
 	}
 
 	public function add()
@@ -41,28 +41,29 @@ class CategoryController
 		echo $this->templates->render('admin/category/create');
     }
 
-	public function create($data,$img)
+	public function create()
 	{
 		$addCategory = $this->category->add('category',$_POST,$_FILES ['image']);
 		//redirect(); 
     }
 
-    public function edit()
+    public function edit($id)
 	{
-		$category = $this->category->show('category', $id['id']);
- 		echo $this->templates->render('admin/category/edit');
+		$category = $this->category->show('category', $id['category_id']);
+ 		echo $this->templates->render('admin/category/edit', ['category' => $category]);
 	}
 
-    public function update($data,$img)
+    public function update($id)
 	{
-		$updateCategory = $this->category->update('category',$_POST,$_FILES ['image'],$id['id']);
+		$updateCategory = $this->category->update('category',$_POST,$_FILES ['image'],$id['category_id']);
 		//redirect();
 	}
 
 	public function delete($id)
 	{
-		$filename = $this->category->show('category', $id['id']);
-		$deleteCategory = $this->category->delete('category',$id['id'],$filename['image']);
+		$filename = $this->category->show('category', $id['category_id']);
+		$deleteCategory = $this->category->delete('category',$id['category_id'],$filename['image']);
+		header('Location: /categorycontrol');
 	}
 
 

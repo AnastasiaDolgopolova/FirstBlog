@@ -52,7 +52,7 @@ $this->layout('layout',['title' => 'Homepage']);
 
            
               <div class="card-body">
-               
+               <a href="#" class="post-cat"><?php// echo $category['title']; ?></a>
                 <h4 class="card-title"><?php echo $post['title'];?></h4>
                 <hr>
               

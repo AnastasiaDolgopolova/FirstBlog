@@ -1,10 +1,13 @@
 <?php
-$this->layout('layout',['title' => 'Add post']);
+$this->layout('layout',['title' => 'Add Category']);
 ?>
     <div class="container">
+      <h1 class="text-left"><strong>Add new category</strong>
+        </h1>
       <div class="row" style="background-color: #F5F5F5">
         <div class="col-md-8 offet-md-2 my-5 py-5">
-         <form action="/store" method="POST" enctype="multipart/form-data">
+
+         <form action="/storecategory" method="POST" enctype="multipart/form-data">
           <div class="form-group">
               <label for="">Category title</label>
               <input type="text"  name="title" class="form-control">
@@ -16,7 +19,7 @@ $this->layout('layout',['title' => 'Add post']);
          </div>
           <div class="form-group">
               <button class="btn btn-outline-success">Add Category</button>
-              <a href="/categories" class="btn btn-outline-info">Back</a>
+              <a href="/categorycontrol" class="btn btn-outline-info">Back</a>
           </div>
         </form>
       </div>

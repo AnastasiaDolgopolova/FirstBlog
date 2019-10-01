@@ -1,13 +1,5 @@
 <?php
-$this->layout('layout',['title' => 'Categorypanel']);
-
-//$this->layout('layout', ['title' => 'Postspage']);
-
-//var_dump($templates);die;
-//$db =include __DIR__ . '/../../model/database/start.php';
-//$posts = $db->getAll('posts');
-
-//echo $templates->render('admin\adminpanel', ['postsView' => $posts]);
+$this->layout('layout');
 
 ?>
 
@@ -19,6 +11,7 @@ $this->layout('layout',['title' => 'Categorypanel']);
         <table class="table">
           <thead>
             <tr>
+              <th scope="col">#</th>
               <th scope="col">Title</th>
               <th scope="col">Image</th>
               <th scope="col">Actions</th>
@@ -26,30 +19,28 @@ $this->layout('layout',['title' => 'Categorypanel']);
             </tr>
           </thead>
           <tbody>
-            <?php// foreach($posts as $post):?>
+            <?php foreach($categoryes as $category):?>
                <tr>
               
 
-              
-              <td>  <ol><h5><li><h4><a href="/show?id=<?//php echo $post['id'];?>"><?php// echo $post['title'];?>Title</li></h5></a>
-                
-              </ol>
+              <th scope="row"><?php echo $category['category_id'];?></th>
+              <td><h5><a href="/show/<?= $category['category_id'];?>"><?php echo $category['title'];?></h5></a>
               </td>
 
               <td>
-                  <img src="/../uploads/<?//=$post['image'] ?>" alt="" width="100" >        
+                  <img src="/../uploads/<?= $category['image'] ?>" alt="" width="100" >        
               </td>
 
               <td>
-                <a href="/editcategory?id=<?php echo $post['id'] ?>" class="btn btn-outline-warning"><i class="fa fa-edit mr-2"></i>Edit</a>
+                <a href="/editcategory/<?= $category['category_id'];?>" class="btn btn-outline-warning"><i class="fa fa-edit mr-2"></i>Edit</a>
               </td>
               <td>
-             <a href="/delete?id=<?php echo $post['id'] ?>&image=<?php echo $post['image'] ?>" 
+             <a href="/deletecategory/<?= $category['category_id'];?>" 
                  class="btn btn-outline-danger" onclick="return confirm('are you shure?')"><i class="fa fa-times-circle mr-2"></i>Delete</a>
               </td>
             
             </tr>
-            <?php //endforeach;?>
+            <?php endforeach;?>
            
           </tbody>
         </table>

@@ -1,5 +1,5 @@
 <?php
-$this->layout('layout',['title' => 'Update']);
+$this->layout('layout');
 ?>
 
     <div class="container">

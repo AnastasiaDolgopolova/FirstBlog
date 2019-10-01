@@ -15,6 +15,7 @@ class PostController
 	public function show($id)
 	{
 		$post = $this->post->show('posts', $id['id']);
+		
 		//var_dump($post);die;
 		echo $this->templates->render('post/post-page',['post' => $post]);
 	}
@@ -27,7 +28,8 @@ class PostController
 
 	public function add()
 	{
-		echo $this->templates->render('post/create');
+		$categories=$this->post->getAll('category');
+		echo $this->templates->render('post/create', ['categories' => $categories]);
     }
 
 	public function create()

@@ -32,7 +32,7 @@ class QueryBuilder
     return $result; 
   }
 
-  function getOne($table, $id)
+  public function getOne($table, $id)
   {
     $select = $this->$queryFactory->newSelect();
     $select->cols(['*'])

@@ -75,7 +75,7 @@
               </a>
             </li>
             <li class="nav-item">
-            <a class="btn btn-outline-info ml-4 " href="/adminpanel" target="_blank">Admin Panel</a>
+            <a class="btn btn-outline-info ml-4 " href="/adminpanel">Admin Panel</a>
             </li>
           </ul>
 

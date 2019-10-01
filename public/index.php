@@ -7,14 +7,27 @@ $templates = new League\Plates\Engine('../app/views');
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', ['App\controllers\HomeController', 'homepage']);
     $r->addRoute('GET', '/about', ['App\controllers\HomeController', 'about']);
+    $r->addRoute('GET', '/categories', ['App\controllers\CategoryController', 'getAll']);
 
 
-    $r->addRoute('GET', '/add', ['App\controllers\PostController', 'add']);
-    $r->addRoute('GET', '/delete/{id:\d+}', ['App\controllers\PostController', 'delete']);
-    $r->addRoute('GET', '/edit/{id:\d+}', ['App\controllers\PostController', 'edit']);
+
     $r->addRoute('GET', '/show/{id:\d+}', ['App\controllers\PostController', 'show']);
+    $r->addRoute('GET', '/add', ['App\controllers\PostController', 'add']);
     $r->addRoute('POST', '/store', ['App\controllers\PostController', 'create']);
+    $r->addRoute('GET', '/edit/{id:\d+}', ['App\controllers\PostController', 'edit']);
     $r->addRoute('POST', '/update/{id:\d+}', ['App\controllers\PostController', 'update']);
+
+    $r->addRoute('GET', '/delete/{id:\d+}', ['App\controllers\PostController', 'delete']);
+    
+
+
+    $r->addRoute('GET', '/categoryposts', ['App\controllers\CategoryController', 'getCategory']);
+    $r->addRoute('GET', '/addcategory', ['App\controllers\CategoryController', 'add']);
+     $r->addRoute('POST', '/storecategory', ['App\controllers\CategoryController', 'create']);
+    $r->addRoute('GET', '/editcategory/{id:\d+}', ['App\controllers\CategoryController', 'edit']);
+    $r->addRoute('POST', '/updatecategory/{id:\d+}', ['App\controllers\CategoryController', 'update']);
+    $r->addRoute('GET', '/deletecategory/{id:\d+}', ['App\controllers\CategoryController', 'delete']);
+    
 
 
 
@@ -33,10 +46,6 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/myposts', ['App\controllers\UserController', 'userPosts']);
 
 
-    $r->addRoute('GET', '/categoryposts', ['App\controllers\CategoryController', 'getCategory']);
-    $r->addRoute('GET', '/categories', ['App\controllers\CategoryController', 'getAll']);
-    $r->addRoute('GET', '/addcategory', ['App\controllers\CategoryController', 'create']);
-    $r->addRoute('GET', '/editcategory', ['App\controllers\CategoryController', 'edit']);
 
 
 
