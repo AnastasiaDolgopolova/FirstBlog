@@ -26,6 +26,7 @@ class Post
 	public function getAll($table)
 	{
 		$posts = $this->db->getAll($table);
+		//var_dump($posts);die;
 		return $posts;
 	}
 	public function add($table,$data,$img)

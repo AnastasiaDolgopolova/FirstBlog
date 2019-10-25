@@ -77,6 +77,9 @@
             <li class="nav-item">
             <a class="btn btn-outline-info ml-4 " href="/adminpanel">Admin Panel</a>
             </li>
+            <li class="nav-item">
+            <a class="btn btn-outline-info ml-4 " href="/logout">Logout</a>
+            </li>
           </ul>
 
         </div>

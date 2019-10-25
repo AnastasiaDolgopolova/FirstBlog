@@ -1,18 +1,18 @@
 <?php
-namespace App\Model\Classes; 
+namespace App\Model\Classes;
 
 class Validator 
 {
-	public function validation($data)
-	{
-		$errorMessage=array();
-		foreach ($data as $key => $value) {
-			 if(empty($value)) {
-		  	$errorMessage[]="поле $key не заполнено\n";
-			 }
-		}
-	 return $errorMessage;
-	}
+    public function validation($data)
+    {
+        $errorMessage=array();
+        foreach ($data as $key => $value) {
+             if(empty($value)) {
+            $errorMessage[]="поле $key не заполнено\n";
+             }
+        }
+     return $errorMessage;
+    }
 
 	public  static function clean($data)
 	{
@@ -28,13 +28,13 @@ class Validator
       return $cleanData;
 	}
 
-	public function imgEmpty($imgName)
-	{
-		if($imgName == '') {
-			$errorMessage='Добавте картинку.';
-			return $errorMessage;
-			die;
-		}
-	return true;
-	}
+    public function imgEmpty($imgName)
+    {
+        if($imgName == '') {
+            $errorMessage='Добавте картинку.';
+            return $errorMessage;
+            die;
+        }
+    return true;
+    }
 }

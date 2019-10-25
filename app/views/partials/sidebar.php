@@ -7,7 +7,7 @@
 
       <div class="card-body">
 
-        <form action="login.php" method="post">
+        <form action="/login" method="post">
            <label class="grey-text">Email</label>
           <input type="email"  name="email" class="form-control">
 

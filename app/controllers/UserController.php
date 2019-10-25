@@ -14,7 +14,7 @@ class UserController
 
     public function userProfile()
 	{
-		$user = $this->user->show('user', $_GET['id']);
+		//$user = $this->user->show('user', $_GET['id']);
 		echo $this->templates->render('user/profile',['user' => $user]);
 	}
 

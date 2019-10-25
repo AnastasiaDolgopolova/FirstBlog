@@ -74,4 +74,11 @@ class ImageManager
 		$this->delete_img=$delete_img;
  		unlink('uploads/'. $this->delete_img);
  	}
+
+ 	 public function getImage($image)
+    {
+        $extension = pathinfo($image['name'], PATHINFO_EXTENSION);
+        $filename = uniqid() . "." . $extension;
+        return $filename;
+    }
 }

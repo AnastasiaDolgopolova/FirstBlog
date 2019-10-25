@@ -45,7 +45,7 @@ $this->layout('layout',['title' => 'Homepage']);
 
               <div class="view overlay">
                 <img class="card-img-top" src="/../uploads/<?=$post['image'] ?>" alt="">
-                <a href="/show/<?= $post['id']?>">
+                <a href="/show/<?=$post['id']?>">
                   <div class="mask rgba-white-slight"></div>
                 </a>
               </div>
