@@ -6,10 +6,10 @@ use League\Plates\Engine;
 
 class PostController
 {
-	public function __construct()
+	public function __construct(Post $post, Engine $engine)
     {
-        $this->post= new Post;
-        $this->templates = new Engine('../app/views');
+        $this->post= $post;
+        $this->templates =$engine;
     }
 	
 	public function show($id)

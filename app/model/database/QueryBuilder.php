@@ -10,11 +10,13 @@ class QueryBuilder
   private $pdo;
   private $queryFactory;
 
-  public function __construct()
+  public function __construct(PDO $pdo)
   {
-    $this->pdo=Connection::make();
+    //$this->pdo=Connection::make();
+    $this->pdo= $pdo;
 
     $this->$queryFactory = new QueryFactory('mysql');
+    //$this->$queryFactory = $queryFactory;
 
   }
 

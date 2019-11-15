@@ -12,23 +12,14 @@ class ImageManager
 	public $delete_img;
 
 
-	function __construct($image)
+	public function uploadImage($image)
 	{
-		//$this->delete_img=$delete_img;
-		$this->image=$image;
-		$this->file_name=$image['name'];
-		$this->tmp_name=$image['tmp_name'];
-		$this->file_size=$image['size'];
-	}
-
-	public function uploadImage()
-	{
-		$testImg=$this->file_size();
+		$testImg=$this->file_size($image['size']);
 			if($testImg === true){
-		$testImg=$this->get_image_format();}
+		$testImg=$this->get_image_format($image['name']);}
 			if($testImg === true){
 		$this->new_file_name();
-		$this->uploading ();
+		$this->uploading ($image['tmp_name']);
 		}elseif($testImg !== true){
 			$errorMessage=$testImg;
 			include __DIR__ .'/../../views/errors.php';
@@ -37,9 +28,9 @@ class ImageManager
 		 return $this->new_file_name;
 	}
 
-	public function file_size()
+	public function file_size($file_size)
 	{
-		if($this->file_size >(1024000)){
+		if($file_size >(1024000)){
 			$errorMessage='Ошибка!Недопустимый размер файла.';
 			return $errorMessage;
 			die;
@@ -47,9 +38,9 @@ class ImageManager
 		return true;
 	}	
 
- 	public function get_image_format()
+ 	public function get_image_format($file_name)
 	{ 
-		$this->extension = pathinfo($this->file_name,PATHINFO_EXTENSION);
+		$this->extension = pathinfo($file_name,PATHINFO_EXTENSION);
 		$types = array('png','jpeg','jpg');
 		if(!in_array($this->extension, $types)){
 			$errorMessage='Ошибка!Недопустимый формат файла.';
@@ -61,24 +52,17 @@ class ImageManager
 
  	public function new_file_name()
  	{
-  	 	return $this->new_file_name = md5 (microtime()) . "." . $this->extension;
+  		return $this->new_file_name = md5 (microtime()) . "." . $this->extension;
  	}
 
-	public function uploading()
+	public function uploading($tmp_name)
 	{
-    move_uploaded_file( $this->tmp_name, __DIR__ . '	/../../../public/uploads/'. $this->new_file_name);
+		var_dump($this->new_file_name);die;
+    move_uploaded_file( $tmp_name, __DIR__ . '	/../../../public/uploads/'. $this->new_file_name);
   	}
   	
 	public function deleteImage($delete_img)
 	{
-		$this->delete_img=$delete_img;
- 		unlink('uploads/'. $this->delete_img);
+ 		unlink('uploads/'. $delete_img);
  	}
-
- 	 public function getImage($image)
-    {
-        $extension = pathinfo($image['name'], PATHINFO_EXTENSION);
-        $filename = uniqid() . "." . $extension;
-        return $filename;
-    }
 }

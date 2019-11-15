@@ -26,9 +26,6 @@ $ContainerBuilder->addDefinitions(array(
     },
     QueryFactory::class => function () {
         return new QueryFactory('mysql');
-    },
-    ImageManager::class => function () {
-        return new ImageManager(array('driver' => 'imagick'));
     }
 ));
 $container = $ContainerBuilder->build();

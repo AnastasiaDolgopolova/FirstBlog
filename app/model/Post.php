@@ -10,9 +10,9 @@ use PDO;
 class Post
 {
 	private $db;
-    public function __construct()
+    public function __construct(QueryBuilder $db)
     {
-        $this->db= new QueryBuilder;
+        $this->db= $db;
     }
 
 	public function show($table,$id)
