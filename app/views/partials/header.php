@@ -1,3 +1,8 @@
+<?php
+use App\Model\Category;
+$categories=Category::getCategories();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,8 +56,9 @@
             Categories</a>
           </button>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Выпадающая ссылка</a>
-            <a class="dropdown-item" href="#">Выпадающая ссылка</a>
+            <?php foreach($categories as $category):?>
+            <a class="dropdown-item" href="/category-posts/<?= $category['id'];?>"><?php echo $category['category_name'];?></a>
+            <?php endforeach;?>
           </div>
         </li>
           </ul>

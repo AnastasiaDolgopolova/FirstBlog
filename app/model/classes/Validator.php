@@ -23,7 +23,7 @@ class Validator
          $value = stripslashes($value);
          $value = strip_tags($value);
          $value = htmlspecialchars($value);
-         $cleanData[]= $value;
+         $cleanData[$key]= $value;
      	}
       return $cleanData;
 	}

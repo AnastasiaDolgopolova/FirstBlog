@@ -79,7 +79,7 @@ $this->layout('layout',['title' => 'Adminpanel']);
 
               <div class="view overlay">
                 <img src="/../img/maxresdefault.jpg" class="card-img-top" alt="">
-                <a href="#">
+                <a href="/categorycontrol">
                   <div class="mask rgba-white-slight"></div>
                 </a>
               </div>

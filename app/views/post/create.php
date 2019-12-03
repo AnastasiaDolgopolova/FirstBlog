@@ -7,6 +7,7 @@ $this->layout('layout', ['title' => 'Add Post']);
          <form action="/store" method="POST" enctype="multipart/form-data">
           <div class="form-group">
               <label for="">Title</label>
+              <?=flash(); ?>
               <input type="text"  name="title" class="form-control">
           </div>
 
@@ -17,10 +18,10 @@ $this->layout('layout', ['title' => 'Add Post']);
 
 
          <div class="form-group my-3">
-          <label for="">Category</label>
+          <label for="">Choose category</label>
             <select class="form-control" name="category">
                 <?php foreach ($categories as $category): ?>
-                <option value="<?=$category['category_id'] ?>"><?=$category['title'] ?></option>
+                <option value="<?=$category['id'] ?>"><?=$category['category_name'] ?></option>
                 <?php endforeach; ?>
             </select>
         </div>

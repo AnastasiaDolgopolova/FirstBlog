@@ -6,6 +6,7 @@ $this->layout('layout',['title' => 'Myposts']);
     <div class="container">
       <a href="/add" class="btn btn-outline-success float-right"><i class="fa fa-plus mr-2"></i>Add Post</a>
       <section class="pt-5">
+        <?=flash(); ?>
 
         <div class="wow fadeIn">
           <h2 class="h1 text-center mb-5">What is MDB?</h2>

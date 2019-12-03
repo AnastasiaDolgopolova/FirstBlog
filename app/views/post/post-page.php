@@ -33,6 +33,7 @@ $this->layout('layout',['title' => $post['title']]);
                <?php echo $post['text'] ?>
 
                 <hr>
+                    <p>Категория: <b><?=$post['category_name'] ?></b></p>
                     <p>Запись добавлена: <b><?=$post['date'] ?></b></p>
               </div>
 

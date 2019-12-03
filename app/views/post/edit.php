@@ -1,5 +1,7 @@
 <?php
 $this->layout('layout');
+use App\Model\Category;
+$categories=Category::getCategories();
 ?>
 
     <div class="container">
@@ -8,6 +10,7 @@ $this->layout('layout');
          <form action="/update/<?= $post['id'];?>" method="POST" enctype="multipart/form-data">
           <div class="form-group">
               <label for="">Title</label>
+              <?=flash(); ?>
               <input type="text" name="title" class="form-control" value="<?php echo $post['title'];?>">
           </div>
 
@@ -15,6 +18,15 @@ $this->layout('layout');
             <label >Сhange image</label>
             <input type="file" class="form-control-file" name="image">
          </div>
+
+         <div class="form-group my-3">
+          <label for="">Сhange category</label>
+            <select class="form-control" name="category">
+                <?php foreach ($categories as $category): ?>
+                <option value="<?=$category['id'] ?>" <?=($post['category_id'] == $category['id']) ? 'selected' : '' ?>><?=$category['category_name'] ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
 
           <label for="">Description</label>
           <div class="form-group">

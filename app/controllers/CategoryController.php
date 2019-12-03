@@ -5,17 +5,26 @@ use App\Model\Category;
 use League\Plates\Engine;
 
 class CategoryController
-{
-	public function __construct()
+{	
+	public function __construct(Category $category, Engine $engine)
     {
-        $this->category= new Category;
-        $this->templates = new Engine('../app/views');
+        $this->category= $category;
+        $this->templates =$engine;
     }
 	
-	public function getPosts($id)
+	public function showPosts($id)
 	{
-		//$category = $this->category->show('category', $id['id']);
-		echo $this->templates->render('category-page');
+		$posts = $this->category->getPosts($id);
+		$category_img=$posts[0]['img'];
+		$category_name=$posts[0]['category_name'];
+		//var_dump($posts);die;
+		if(empty($posts)){
+			$errorMessage= 'Sorry this category is empty';
+			echo $this->templates->render('errors',['errorMessage' => $errorMessage]);
+		}
+		else { 
+			echo $this->templates->render('category-posts',['posts' => $posts,'category_img' =>$category_img, 'category_name' =>$category_name]);
+			}
 	}
 
 	public function getPostsCount()
@@ -24,16 +33,16 @@ class CategoryController
 		//return 
 	}
 
-	public function getAll($table)
+	/*public function getAll($table)
 	{
-		$category = $this->category->getAll('category');
-        echo $this->templates->render('category-page', ['categoryView' => $category]);
+		$categories = $this->category->getAll('category');
+        echo $this->templates->render('category-page', ['categoryView' => $categories]);
 	}
-
+*/
 	public function control()
 	{
-		$categoryes = $this->category->getAll('category');
-        echo $this->templates->render('admin/category/admin-categories', ['categoryes' => $categoryes]);
+		$categories = $this->category->getAll('category');
+        echo $this->templates->render('admin/category/admin-categories', ['categories' => $categories]);
 	}
 
 	public function add()
@@ -49,13 +58,13 @@ class CategoryController
 
     public function edit($id)
 	{
-		$category = $this->category->show('category', $id['category_id']);
+		$category = $this->category->show('category', $id);
  		echo $this->templates->render('admin/category/edit', ['category' => $category]);
 	}
 
     public function update($id)
 	{
-		$updateCategory = $this->category->update('category',$_POST,$_FILES ['image'],$id['category_id']);
+		$updateCategory = $this->category->update('category',$_POST,$_FILES ['image'],$id);
 		//redirect();
 	}
 

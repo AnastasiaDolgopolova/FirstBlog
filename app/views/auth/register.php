@@ -8,6 +8,7 @@ $this->layout('layout',['title' => 'Registration']);
     <form class="col-5 text-center" action="/register" method="post">
         
         <h2 class="blue-text my-4">Registration</h2>
+        <?=flash(); ?>
 
         <div class="form-group my-3">
             <input type="name" class="form-control" placeholder="Name" name="username">

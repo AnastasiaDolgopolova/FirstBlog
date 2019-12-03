@@ -57,7 +57,7 @@ class ImageManager
 
 	public function uploading($tmp_name)
 	{
-		var_dump($this->new_file_name);die;
+		//var_dump($this->new_file_name);die;
     move_uploaded_file( $tmp_name, __DIR__ . '	/../../../public/uploads/'. $this->new_file_name);
   	}
   	

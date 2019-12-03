@@ -1,3 +1,8 @@
+<?php
+use App\Model\Category;
+$categories=Category::getCategories();
+?>
+
   <div class="col-md-4 mb-4">
 
   	<!--Auth form -->
@@ -45,50 +50,38 @@
 
 
 <!-- Categories -->
- <div class="card mb-4 wow fadeIn">
+<div class="card mb-4 wow fadeIn">
 
       <div class="card-header">
-        <a href="/categories">Categories</a>
+        <a href="/Categories">Categories</a>
       </div>
         <div class="card-body">
-
-         <ul class="list-unstyled">
-             <li class="media">
+        <div class="row">
+                <div class="col-10">
+                  <ul>
+              <?php foreach($categories as $category):?>
+              
+             <li class="media mt-3">
               <div class="view overlay">
-              <img class="rounded-circle" src="https://mdbootstrap.com/img/Photos/Others/placeholder7.jpg" alt="Generic placeholder image">
-              <a href="/categoryposts"><div class="mask rgba-white-slight"></div>
-              </a>
-            </div>
-               <div class="media-body">
-                   <a href="/categoryposts">
-                   <h4 class="mt-0 mb-1 font-weight-bold">Title</h4>
-                   </a>This is category about ...
-                   <b> <?//= countCategory($category['id']) ?></b></li>
-                    </div>
-                </li>
-             <li class="media my-4">
-                 <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder6.jpg" alt="An image">
-                <div class="media-body">
-                   <a href="">
-                     <h5 class="mt-0 mb-1 font-weight-bold">List-based media object</h5>
-                    </a>
-                     Cras sit amet nibh libero, in gravida nulla (...)
-                </div>
+                
+              <img class="rounded-circle media-middle mr-3" src="/../uploads/<?=$category['img'] ?>" alt="" height="60" width="60">
+              <a href="/category-posts/<?= $category['id'];?>">
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div>
+               <div class="media-body mt-3">
+                   <a href="/category-posts/<?= $category['id'];?>">
+                   <h4 class="font-weight-bold"><?php echo $category['category_name'];?></h4>
+                   </a>
+                 </div>
+
                </li>
-               <li class="media">
-                 <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder5.jpg" alt="Generic placeholder image">
-                <div class="media-body">
-                    <a href="">
-                     <h5 class="mt-0 mb-1 font-weight-bold">List-based media object</h5>
-                     </a>
-                      Cras sit amet nibh libero, in gravida nulla (...)
-                    </div>
-              </li>
-           </ul>
-
-       </div>
-
-
+              <?php endforeach;?>
+            </ul>
+              </div>
+                </div>
+              </div>
+            </div>
 <!-- /Categories -->
 
 <!-- Other Posts -->

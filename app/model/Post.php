@@ -6,31 +6,38 @@ use App\Model\Classes\Validator;
 use App\Model\Database\QueryBuilder;
 use App\Model\Database\Connection;
 use PDO;
+use League\Plates\Engine;
 
 class Post
 {
 	private $db;
-    public function __construct(QueryBuilder $db)
+    public function __construct(QueryBuilder $db, Engine $engine)
     {
         $this->db= $db;
+        $this->templates =$engine;
     }
 
 	public function show($table,$id)
 	{
 		$post = $this->db->getOne($table, $id);
-	
-		var_dump($post);die;
+		//var_dump($post);die;
+		return $post;
+	}
+	public function showPost($table,$id)
+	{
+		$post = $this->db->getOnePost($table, $id);
+		//var_dump($post);die;
 		return $post;
 	}
 
 	public function getAll($table)
 	{
-		$posts = $this->db->getAll($table);
+		$posts = $this->db->getAlls($table);
 		//var_dump($posts);die;
 		return $posts;
 	}
 	public function add($table,$data,$img)
-	{
+	{var_dump($data);die;
 		$cleanData=Validator::clean($data);
 		$Validator= new Validator;
 		 $errorMessage=$Validator->validation($data);
@@ -39,13 +46,14 @@ class Post
 			$errorMessage=$Validator->imgEmpty($img['name']);
 			if($errorMessage === true){
 	
-	  		$image = new ImageManager($img );
-				$filename=$image->uploadImage();
+	  		$image = new ImageManager();
+				$filename=$image->uploadImage($img);
 				
 				$this->db->create($table, [
-					'title' => $_POST['title'],
-					'description' => $_POST['description'],
-					'text' => $_POST['text'],
+					'title' => $cleanData['title'],
+					'description' => $cleanData['description'],
+					'text' => $cleanData['text'],
+					'category_id' => $cleanData['category'],
 					'image' => $filename
 				]);
 
@@ -53,8 +61,7 @@ class Post
 				}
 			}
 			if($errorMessage) {
-				require __DIR__ .'/../views/errors.php';
-				exit;
+				echo $this->templates->render('errors', ['errorMessage' => $errorMessage]);
 			}
 	}
 
@@ -66,18 +73,18 @@ class Post
 		 
 		if(empty($errorMessage)){
 			if(!empty($img['tmp_name'])){
-				$image = new ImageManager($img);
-				$filename=$image->uploadImage();
+				$image = new ImageManager();
+				$filename=$image->uploadImage($img);
 				$image->deleteImage($_POST['oldImage']);
 			}else{$filename = $_POST['oldImage'];
 			  }
 			$isImg=$Validator->imgEmpty($filename);
 			if ($isImg === true) {
 			$this->db->update($table, $data = [ 
-				'title' => $_POST['title'],
-				'description' => $_POST['description'],
-				'text' => $_POST['text'],
-				'category_id' => $_POST['category'],
+				'title' => $cleanData['title'],
+				'description' => $cleanData['description'],
+				'text' => $cleanData['text'],
+				'category_id' => $cleanData['category'],
 				'image' => $filename
 			], 
 			$id);
@@ -86,9 +93,7 @@ class Post
 			}
 }
 	if($errorMessage) {
-		echo 333;die;
-		require __DIR__ .'/../views/errors.php';
-		exit;
+		echo $this->templates->render('errors', ['errorMessage' => $errorMessage]);
 	}
 
 	}

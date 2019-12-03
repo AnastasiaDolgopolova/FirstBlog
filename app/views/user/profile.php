@@ -5,6 +5,7 @@ $this->layout('layout',['title' => 'My profile']);
 <div class="container" >
      <br>
      <h1 class="text-center">My profile</h1>
+     <?=flash(); ?>
      <br>
        <div class="row ">
          <div class="col-md-auto">

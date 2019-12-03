@@ -7,6 +7,7 @@ $this->layout('layout',['title' => 'Change password']);
     <form class="col-5 text-center" action="register.php" method="post">
         
         <h2 class="blue-text my-4">Change password</h2>
+        <?=flash(); ?>
 
         <div class="form-group my-3">
             <input type="password" class="form-control" placeholder="Password" name="password">

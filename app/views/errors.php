@@ -9,5 +9,5 @@ $this->layout('layout',['title' => 'Error']);
 				<?php else: ?>
 				<h1 class="text-danger"><?php echo $errorMessage; ?></h1>	
 				<?php endif; ?>
-			<a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Назад</a>
+			<a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">BACK</a>
 		</div>

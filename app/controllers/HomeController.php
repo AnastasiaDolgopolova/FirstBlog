@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Model\Post;
 use League\Plates\Engine;
+use App\Model\Category;
 
 class HomeController
 {
@@ -24,9 +25,10 @@ class HomeController
         echo $this->templates->render('about');
 	}
 
-	public function getCategory($name)
+	public function categories()
 	{
-        echo $this->templates->render('about');
+		$categories=Category::getCategories();
+        echo $this->templates->render('categories',['categories' => $categories]);
 	}
 
 	public function adminPanel()

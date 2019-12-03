@@ -10,6 +10,7 @@ $this->layout('layout',['title' => 'Add Category']);
          <form action="/storecategory" method="POST" enctype="multipart/form-data">
           <div class="form-group">
               <label for="">Category title</label>
+              <?=flash(); ?>
               <input type="text"  name="title" class="form-control">
           </div>
           

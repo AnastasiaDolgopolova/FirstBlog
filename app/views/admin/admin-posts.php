@@ -6,6 +6,7 @@ $this->layout('layout',['title' => 'Postspanel']);
 <div class="container">
     <div class="row">
       <div class="col-md-12 offest-md-2">
+        <?=flash(); ?>
         <a href="/add" class="btn btn-outline-success"><i class="fa fa-plus mr-2"></i>Add Post</a>
         <table class="table">
           <thead>
@@ -23,10 +24,11 @@ $this->layout('layout',['title' => 'Postspanel']);
             <?php foreach($posts as $post):?>
                <tr>
               <th scope="row"><?php echo $post['id'];?></th>
-              <td><a href="/show/<?= $post['id'];?>"><?php echo $post['title'];?></a></td>
+              <td ><a class="text-primary" href="/show/<?= $post['id'];?>"><?php echo $post['title'];?></a></td>
               <td>
                   <img src="/../uploads/<?=$post['image'] ?>" alt="" width="100" >        
               </td>
+              <td> <a class="text-primary" href="/category-posts/<?= $post['category_id'];?>" class="post-cat"><?php echo $post['category_name'];?></a></td>
               <td><?php echo $post['date'];?></td>
               <td>
                 <a href="/edit/<?= $post['id']?>" class="btn btn-outline-warning"><i class="fa fa-edit mr-2"></i>Edit</a>

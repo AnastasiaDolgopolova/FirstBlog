@@ -6,6 +6,7 @@ $this->layout('layout',['title' => 'Authorization']);
   <div class="row h-100 justify-content-center align-items-center" >
     <form class="col-4 text-center" action="/login" method="post">
     <h2 class="blue-text my-4">Authorization</h2>
+    <?=flash(); ?>
         <div class="form-group">
             <input type="email" class="form-control" placeholder="Email" name="email">
         </div>
