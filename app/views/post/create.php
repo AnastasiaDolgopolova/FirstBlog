@@ -8,18 +8,19 @@ $this->layout('layout', ['title' => 'Add Post']);
           <div class="form-group">
               <label for="">Title</label>
               <?=flash(); ?>
-              <input type="text"  name="title" class="form-control">
+              <input type="text"  name="title" class="form-control" value="<?=@$_POST['title']?>"required>
           </div>
 
           <div class="form-group">
           <label >Add image</label>
-          <input type="file" class="form-control-file" name="image">
+          <input type="file" class="form-control-file" name="image" required>
          </div>
 
 
          <div class="form-group my-3">
           <label for="">Choose category</label>
-            <select class="form-control" name="category">
+            <select class="form-control" name="category" required>
+                <option></option>
                 <?php foreach ($categories as $category): ?>
                 <option value="<?=$category['id'] ?>"><?=$category['category_name'] ?></option>
                 <?php endforeach; ?>
@@ -28,12 +29,12 @@ $this->layout('layout', ['title' => 'Add Post']);
 
           <label for="">Description</label>
           <div class="form-group">
-            <textarea name="description" class="form-control"rows="2" cols="60" maxlength="250"></textarea>
+            <textarea name="description" class="form-control"rows="2" cols="60" maxlength="250" required></textarea>
          </div> 
 
         <label for="">Text</label>
           <div class="form-group">
-            <textarea name="text" class="form-control" rows="10" cols="60"  maxlength="5000"></textarea>
+            <textarea name="text" class="form-control" rows="10" cols="60"  maxlength="5000" required></textarea>
         </div>
         
           <div class="form-group">

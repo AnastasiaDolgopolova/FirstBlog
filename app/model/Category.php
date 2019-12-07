@@ -7,16 +7,14 @@ use App\Model\Classes\Validator;
 use App\Model\Database\QueryBuilder;
 use App\Model\Database\Connection;
 use PDO;
-use League\Plates\Engine;
 
 class Category 
 //extends Post
 {
 	private $db;
-    public function __construct(QueryBuilder $db, Engine $engine)
+    public function __construct(QueryBuilder $db)
     {
         $this->db= $db;
-        $this->templates =$engine;
     }
 
     public static function getCategories()
@@ -50,11 +48,10 @@ class Category
 	{
 		$cleanData=Validator::clean($data);
 		$Validator= new Validator;
-		 $errorMessage=$Validator->validation($data);
+		$errorMessage=$Validator->validation($data);
 
-		if(empty($errorMessage)){
-			$errorMessage=$Validator->imgEmpty($img['name']);
-			if($errorMessage === true){
+		$errorImage=$Validator->imgEmpty($img['name']);
+			if($errorImage === false && empty($errorMessage)){
 	
 	  		$image = new ImageManager();
 				$filename=$image->uploadImage($img);
@@ -63,11 +60,18 @@ class Category
 					'category_name' => $cleanData['title'],
 					'img' => $filename
 				]);
+				flash()->success('Запись успешно добавлена');
 				header('Location: /categorycontrol');
-				}
+				exit;
 			}
-			if($errorMessage) {
-				echo $this->templates->render('errors', ['errorMessage' => $errorMessage]);
+			if($errorMessage || $errorImage) {
+				if($errorMessage){
+		 		flash()->error($errorMessage);
+		 		}
+				if($errorImage){
+					flash()->error($errorImage);}
+				header("Location: {$_SERVER['HTTP_REFERER']}");
+				exit;
 			}
 	}
 
@@ -85,20 +89,27 @@ class Category
 			}else{$filename = $_POST['oldImage'];
 			  }
 			$isImg=$Validator->imgEmpty($filename);
-			if ($isImg === true) {
+			if ($isImg === false) {
 			$this->db->update($table, $data = [ 
 				'category_name' => $cleanData['title'],
 				'img' => $filename
 			], 
 			$id);
 
-
+			flash()->success('Запись успешно изменена');
 			header('Location: /categorycontrol');
+			exit;
 			}
 }
-	if($errorMessage) {
-		echo $this->templates->render('errors', ['errorMessage' => $errorMessage]);
-	}
+	if($errorMessage || $isImg) {
+				if($errorMessage){
+		 		flash()->error($errorMessage);
+		 		}
+				if($isImg){
+					flash()->error($isImg);}
+				header("Location: {$_SERVER['HTTP_REFERER']}");
+				exit;
+			}
 
 	}
 
@@ -112,6 +123,7 @@ class Category
 		$this->db->delete($table, $id);
 		if(!empty ($img)){
 		$this->deleteImage($img);
+		flash()->success('Запись удалена');
 		}
 		
 

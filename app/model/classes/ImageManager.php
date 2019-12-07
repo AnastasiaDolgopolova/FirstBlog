@@ -22,7 +22,8 @@ class ImageManager
 		$this->uploading ($image['tmp_name']);
 		}elseif($testImg !== true){
 			$errorMessage=$testImg;
-			include __DIR__ .'/../../views/errors.php';
+			flash()->error($errorMessage);
+			header("Location: {$_SERVER['HTTP_REFERER']}");
 			exit;
 			}
 		 return $this->new_file_name;

@@ -30,11 +30,11 @@ class Validator
 
     public function imgEmpty($imgName)
     {
-        if($imgName == '') {
-            $errorMessage='Добавте картинку.';
+        if($imgName =='') {
+            $errorMessage='Добавте картинку';
             return $errorMessage;
             die;
         }
-    return true;
+    return false;
     }
 }

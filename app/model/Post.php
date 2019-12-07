@@ -6,15 +6,13 @@ use App\Model\Classes\Validator;
 use App\Model\Database\QueryBuilder;
 use App\Model\Database\Connection;
 use PDO;
-use League\Plates\Engine;
 
 class Post
 {
 	private $db;
-    public function __construct(QueryBuilder $db, Engine $engine)
+    public function __construct(QueryBuilder $db)
     {
         $this->db= $db;
-        $this->templates =$engine;
     }
 
 	public function show($table,$id)
@@ -37,14 +35,12 @@ class Post
 		return $posts;
 	}
 	public function add($table,$data,$img)
-	{var_dump($data);die;
+	{
 		$cleanData=Validator::clean($data);
 		$Validator= new Validator;
-		 $errorMessage=$Validator->validation($data);
-
-		if(empty($errorMessage)){
-			$errorMessage=$Validator->imgEmpty($img['name']);
-			if($errorMessage === true){
+		 $errorMessage=$Validator->validation($cleanData);
+			$errorImage=$Validator->imgEmpty($img['name']);
+			if($errorImage === false && empty($errorMessage)){
 	
 	  		$image = new ImageManager();
 				$filename=$image->uploadImage($img);
@@ -56,12 +52,20 @@ class Post
 					'category_id' => $cleanData['category'],
 					'image' => $filename
 				]);
-
+				flash()->success('Запись успешно добавлена');
 				header('Location: /');
-				}
+				exit;
 			}
-			if($errorMessage) {
-				echo $this->templates->render('errors', ['errorMessage' => $errorMessage]);
+			if($errorMessage || $errorImage) {
+				if(is_array($errorMessage)){
+				foreach($errorMessage as $mesage){
+		 		flash()->error($mesage);
+		 		}
+			}
+				if($errorImage){
+					flash()->error($errorImage);}
+				header("Location: {$_SERVER['HTTP_REFERER']}");
+   				 exit;
 			}
 	}
 
@@ -79,7 +83,7 @@ class Post
 			}else{$filename = $_POST['oldImage'];
 			  }
 			$isImg=$Validator->imgEmpty($filename);
-			if ($isImg === true) {
+			if ($isImg === false) {
 			$this->db->update($table, $data = [ 
 				'title' => $cleanData['title'],
 				'description' => $cleanData['description'],
@@ -88,26 +92,35 @@ class Post
 				'image' => $filename
 			], 
 			$id);
-
+			flash()->success('Запись успешно изменена');
 			header('Location: /');
+			exit;
 			}
-}
-	if($errorMessage) {
-		echo $this->templates->render('errors', ['errorMessage' => $errorMessage]);
-	}
-
-	}
-
-	public function deleteImage($delete_img)
-	{
-        unlink('uploads/'. $delete_img);
-	}
-
-	public function delete($table,$id,$img)
-	{
-		$this->db->delete($table, $id);
-		if(!empty ($img)){
-		$this->deleteImage($img);
 		}
-	}
+			if($errorMessage || $isImg) {
+				if(is_array($errorMessage)){
+				foreach($errorMessage as $mesage){
+		 		flash()->error($mesage);
+		 		}
+			}
+				if($$isImg){
+					flash()->error($isImg);}
+				header("Location: {$_SERVER['HTTP_REFERER']}");
+				exit;
+				}
+			}
+
+			public function deleteImage($delete_img)
+			{
+		        unlink('uploads/'. $delete_img);
+			}
+
+			public function delete($table,$id,$img)
+			{
+				$this->db->delete($table, $id);
+				if(!empty ($img)){
+				$this->deleteImage($img);
+				flash()->success('Запись удалена');
+				}
+			}
 }

@@ -19,8 +19,9 @@ class CategoryController
 		$category_name=$posts[0]['category_name'];
 		//var_dump($posts);die;
 		if(empty($posts)){
-			$errorMessage= 'Sorry this category is empty';
-			echo $this->templates->render('errors',['errorMessage' => $errorMessage]);
+			flash()->error('Sorry this category is empty');
+			header('Location: /');
+			
 		}
 		else { 
 			echo $this->templates->render('category-posts',['posts' => $posts,'category_img' =>$category_img, 'category_name' =>$category_name]);

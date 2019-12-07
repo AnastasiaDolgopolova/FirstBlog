@@ -11,12 +11,12 @@ $this->layout('layout',['title' => 'Add Category']);
           <div class="form-group">
               <label for="">Category title</label>
               <?=flash(); ?>
-              <input type="text"  name="title" class="form-control">
+              <input type="text"  name="title" class="form-control" required>
           </div>
           
         <div class="form-group mt-5">
           <label >Add image</label>
-          <input type="file" class="form-control-file" name="image">
+          <input type="file" class="form-control-file" name="image"  required>
          </div>
           <div class="form-group">
               <button class="btn btn-outline-success">Add Category</button>
