@@ -28,8 +28,7 @@ class UserController
 	public function index()
 	{
 		$userInfo = $this->model->show('users', $this->auth->getUserId());
-		var_dump($userInfo);die;
-		return $userInfo;
+		echo $this->templates->render('partials/sidebar',['user' => $userInfo]);
 	}
 
 	public function userPosts()
