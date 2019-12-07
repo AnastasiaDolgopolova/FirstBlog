@@ -3,7 +3,6 @@ namespace App\Controllers;
 
 use Delight\Auth\Auth;
 use League\Plates\Engine;
-use App\Model\Database\Connection;
 use PDO;
 
 class RegisterController
@@ -12,33 +11,11 @@ class RegisterController
 	private $db;
 	private $templates;
 
-	public function __construct(Engine $engine, Auth $auth)
+	public function __construct(PDO $pdo, Engine $engine, Auth $auth)
     {
-    	$this->db=Connection::make();
-        $this->templates = $engine('../app/views');
-        $ContainerBuilder->addDefinitions(array(
-    Engine::class => function () {
-        return new Engine('../app/views');
-    },
-    PDO::class => function () {
-        $driver = "mysql";
-        $host = "localhost";
-        $db_name = "phpblog";
-        $user = "root";
-        $password = "";
-        return new PDO("$driver:host=$host;dbname=$db_name", $user, $password);
-    },
-    Auth::class => function ($container) {
-        return new Auth($container->get('PDO'));
-    },
-    QueryFactory::class => function () {
-        return new QueryFactory('mysql');
-    },
-    ImageManager::class => function () {
-        return new ImageManager(array('driver' => 'imagick'));
-    }
-));
-        $this->auth = $auth($this->db);
+    	$this->db= $pdo;
+        $this->templates = $engine;
+        $this->auth = $auth;
     }
 	
 	public function index()
@@ -56,17 +33,19 @@ class RegisterController
 	    echo 'We have signed up a new user with the ID ' . $userId;
 		}
 		catch (\Delight\Auth\InvalidEmailException $e) {
-		    die('Invalid email address');
+		    flash()->error(['Invalid email address']);
 		}
 		catch (\Delight\Auth\InvalidPasswordException $e) {
-		    die('Invalid password');
+		    flash()->error(['Invalid password']);
 		}
 		catch (\Delight\Auth\UserAlreadyExistsException $e) {
-		    die('User already exists');
+		    flash()->error(['User already exists']);
 		}
 		catch (\Delight\Auth\TooManyRequestsException $e) {
-		    die('Too many requests');
+		    flash()->error(['Too many requests']);
 		}
+		header('Location: /register');
+		exit;
 	}
 
 	public function email_verification()

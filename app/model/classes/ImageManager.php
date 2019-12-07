@@ -64,6 +64,8 @@ class ImageManager
   	
 	public function deleteImage($delete_img)
 	{
+		if(!empty($delete_img)){
  		unlink('uploads/'. $delete_img);
+ 	}
  	}
 }

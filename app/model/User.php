@@ -1,18 +1,17 @@
 <?php
-namespace App\Model\Admin;
+namespace App\Model;
 
 use App\Model\Classes\ImageManager;
 use App\Model\Classes\Validator;
 use App\Model\Database\QueryBuilder;
-use App\Model\Database\Connection;
 use PDO;
 
-class Post
+class User
 {
 	private $db;
-    public function __construct()
+    public function __construct(QueryBuilder $db)
     {
-        $this->db= new QueryBuilder;
+        $this->db= $db;
     }
 
 	public function show($table,$id)
@@ -55,7 +54,7 @@ class Post
 	}
 
 	public function edit($table,$data,$img)
-	{
+	{var_dump($_POST['oldImage']);die;
 		$cleanData=Validator::clean($data);
 		 $Validator= new Validator;
 		 $errorMessage=$Validator->validation($data);
@@ -86,6 +85,35 @@ class Post
 		exit;
 	}
 
+	}
+
+	public function updateImage($table,$img,$id)
+	{
+        if(!empty($img['tmp_name'])){
+				$image = new ImageManager();
+				$filename=$image->uploadImage($img);
+				$image->deleteImage($_POST['oldImage']);
+			}else{$filename = $_POST['oldImage'];
+			  }
+			  $Validator= new Validator;
+			$isImg=$Validator->imgEmpty($filename);
+			if ($isImg === false) {
+				$this->db->update($table, ['avatar' => $filename], 
+			$id);
+			flash()->success('Аватарка успешно изменена');
+			header('Location: /');
+			exit;
+			}
+			if($errorMessage || $isImg) {
+				if($errorMessage){
+					flash()->error($errorMessage);
+				}
+        		if($isImg){
+					flash()->error($isImg);
+				}
+			header("Location: {$_SERVER['HTTP_REFERER']}");
+	   		exit;
+		}
 	}
 
 	public function deleteImage($delete_img)

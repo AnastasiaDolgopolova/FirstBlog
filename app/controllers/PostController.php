@@ -55,6 +55,7 @@ class PostController
 		$filename = $this->model->show('posts', $id);
 		$deletePost=$this->model->delete('posts',$id,$filename['image']);
 	
-		header('Location: /');
+		header("Location: {$_SERVER['HTTP_REFERER']}");
+   		exit;
 	}
 }

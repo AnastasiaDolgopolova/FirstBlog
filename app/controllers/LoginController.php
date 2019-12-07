@@ -3,7 +3,6 @@ namespace App\Controllers;
 
 use Delight\Auth\Auth;
 use League\Plates\Engine;
-use App\Model\Database\Connection;
 use PDO;
 
 class LoginController
@@ -12,11 +11,11 @@ class LoginController
 	private $db;
 	private $templates;
 
-	public function __construct()
+	public function __construct(PDO $pdo, Engine $engine, Auth $auth)
     {
-    	$this->db=Connection::make();
-        $this->templates = new Engine('../app/views');
-        $this->auth = new \Delight\Auth\Auth($this->db);
+    	$this->pdo= $pdo;
+        $this->templates = $engine;
+        $this->auth = $auth;
     }
 
     public function index()
@@ -32,17 +31,19 @@ class LoginController
 	    echo 'User is logged in';
 		}
 		catch (\Delight\Auth\InvalidEmailException $e) {
-		    die('Wrong email address');
+		    flash()->error(['Wrong email address']);
 		}
 		catch (\Delight\Auth\InvalidPasswordException $e) {
-		    die('Wrong password');
+		    flash()->error(['Wrong password']);
 		}
 		catch (\Delight\Auth\EmailNotVerifiedException $e) {
-		    die('Email not verified');
+		    flash()->error(['Email not verified']);
 		}
 		catch (\Delight\Auth\TooManyRequestsException $e) {
-		    die('Too many requests');
+		    flash()->error(['Too many requests']);
 		}
+		redirect("/login");
+		exit;
 	}
 
 	public function logout()

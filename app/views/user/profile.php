@@ -10,16 +10,19 @@ $this->layout('layout',['title' => 'My profile']);
        <div class="row ">
          <div class="col-md-auto">
              <?
-               if(!empty($UserPhoto)){
-                  echo '<img src="'.$PathFiles.$UserPhoto.'" alt="..." class="img-thumbnail" width="200px">';
+               if(!empty($user['avatar'])){
+                  echo '<img src="/../uploads/'.$user['avatar'].'" alt="..." class="img-thumbnail" width="200px">';
                  }
                 else{
                 echo '<img src="/../img/default_user_photo.jpg" alt="..." class="rounded-circle img-thumbnail" width="200px">';
                   }
               ?>
 
-      <form action="uploadingphoto.php" method="POST" enctype="multipart/form-data">
-         <input name="user_photo" type="file">
+      <form action="/edit_avatar" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+         <input name="avatar" type="file" required>
+         <input type="hidden" name="oldImage" value="<?echo $user['avatar']?>">
+        </div>
          <br><br>
          <button type="submit" class="btn btn-primary btn-sm">Update photo<i class="fa fa-camera ml-2"></i></button>
         </form>
@@ -31,13 +34,13 @@ $this->layout('layout',['title' => 'My profile']);
                <div class="input-group-prepend">
                  <span class="input-group-text" id="basic-addon1"> Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                   </div>
-                 <input name="First_Name" class="form-control" value="<?php echo $FirstName?>" aria-label="Postname" aria-describedby="basic-addon1">
+                 <input name="Name" class="form-control" value="<?php echo $user['username'];?>">
                 </div>
                  <div class="input-group mb-3">
                  <div class="input-group-prepend">
                  <span class="input-group-text" id="basic-addon1">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
                   </div>
-                  <input type="text" name="Second_Name" maxlength="255" class="form-control" value="<?php echo $SecondName?>" aria-label="Postname" aria-describedby="basic-addon1">
+                  <input name="Email" maxlength="255" class="form-control" value="<?php echo $user['email']?>">
                  </div>
            		 <label  class="grey-text">Сonfirm your password</label>
                   <div class="input-group">

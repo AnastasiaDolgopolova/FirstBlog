@@ -4,7 +4,6 @@ namespace App\Model;
 use App\Model\Classes\ImageManager;
 use App\Model\Classes\Validator;
 use App\Model\Database\QueryBuilder;
-use App\Model\Database\Connection;
 use PDO;
 
 class Post

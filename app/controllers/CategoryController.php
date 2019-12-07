@@ -73,7 +73,8 @@ class CategoryController
 	{
 		$filename = $this->category->show('category', $id['category_id']);
 		$deleteCategory = $this->category->delete('category',$id['category_id'],$filename['image']);
-		header('Location: /categorycontrol');
+		header("Location: {$_SERVER['HTTP_REFERER']}");
+   		exit;
 	}
 
 

@@ -17,7 +17,7 @@ $this->layout('layout',['title' => 'Change password']);
         </div>
 
         <div class="form-group my-3">
-            <input type="password" class="form-control" placeholder="Repeat new assword" name="password">
+            <input type="password" class="form-control" placeholder="Repeat new password" name="password">
         </div>
         <button class="btn btn-lg btn-outline-primary btn-block" type="submit">Change</button>
         <br>

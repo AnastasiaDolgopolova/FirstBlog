@@ -1,6 +1,9 @@
 <?php
 use App\Model\Category;
+use App\Controllers\UserController;
+$User = new UserController;
 $categories=Category::getCategories();
+$user = $User->index();
 ?>
 
   <div class="col-md-4 mb-4">
@@ -37,11 +40,18 @@ $categories=Category::getCategories();
   </div>
     <div class="card-body">
       <div class="mx-5 my-5">
-<img class="rounded-circle img-fluid img-thumbnail" src="/../img/default_user_photo.jpg" alt="Generic placeholder image">
-</div>
-<h1 class="blue-text mb-4">
-    User Name
- </h1>
+        <?
+               if(!empty($user['avatar'])){
+                  echo '<img class="rounded-circle img-fluid img-thumbnail" src="/../uploads/'.$user['avatar'].'" alt="..." class="img-thumbnail" width="200px">';
+                 }
+                else{
+                echo '<img class="rounded-circle img-fluid img-thumbnail" src="/../img/default_user_photo.jpg" alt="..." class="rounded-circle img-thumbnail" width="200px">';
+                  }
+              ?>
+        </div>
+    <h1 class="blue-text mb-4">
+      <?php echo $user['username'];?>
+    </h1>
 
     <a class="btn btn-outline-info btn-md" href="/myposts">My Posts</a>
 </div>

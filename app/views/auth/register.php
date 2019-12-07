@@ -11,13 +11,13 @@ $this->layout('layout',['title' => 'Registration']);
         <?=flash(); ?>
 
         <div class="form-group my-3">
-            <input type="name" class="form-control" placeholder="Name" name="username">
+            <input type="name" class="form-control" placeholder="Name" name="username" required>
         </div>
         <div class="form-group">
-            <input type="email" class="form-control" placeholder="Email" name="email">
+            <input type="email" class="form-control" placeholder="Email" name="email" required>
         </div>
         <div class="form-group my-3">
-            <input type="password" class="form-control" placeholder="Password" name="password">
+            <input type="password" class="form-control" placeholder="Password" name="password" required>
         </div>
 
         <button class="btn btn-lg btn-outline-primary btn-block" type="submit">Register</button>
