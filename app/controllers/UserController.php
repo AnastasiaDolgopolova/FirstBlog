@@ -12,23 +12,17 @@ class UserController
         $this->model= $user;
         $this->templates = $engine;
         $this->auth = $auth;
-        if (!$this->auth->isLoggedIn()) {
+        /*if (!$this->auth->isLoggedIn()) {
             flash()->error('Ты не залогинен');
             redirect("/");
             die;
-        }
+        }*/
     }
 
     public function userProfile()
 	{
 		$userInfo = $this->model->show('users', $this->auth->getUserId());
 		echo $this->templates->render('user/profile',['user' => $userInfo]);
-	}
-
-	public function index()
-	{
-		$userInfo = $this->model->show('users', $this->auth->getUserId());
-		echo $this->templates->render('partials/sidebar',['user' => $userInfo]);
 	}
 
 	public function userPosts()

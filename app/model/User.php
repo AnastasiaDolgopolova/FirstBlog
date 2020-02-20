@@ -1,6 +1,8 @@
 <?php
 namespace App\Model;
 
+use Delight\Auth\Auth;
+use DI\Container;
 use App\Model\Classes\ImageManager;
 use App\Model\Classes\Validator;
 use App\Model\Database\QueryBuilder;
@@ -13,11 +15,42 @@ class User
     {
         $this->db= $db;
     }
-
-	public function show($table,$id)
+    public static function getUser($id)
 	{
-		$post = $this->db->getOne($table, $id);
-		return $post;
+		$container = new Container();
+		global $container;
+	    $pdo = $container->get('PDO');
+	    $query = $container->get('Aura\SqlQuery\QueryFactory');
+	    $db = new QueryBuilder($pdo, $query);
+	    $user = $db->getOne('users', $id);
+	    return $user;
+		//$user=$this->getUserInfo($this->getId());
+		//return $user;
+		//$id = $self->getId();
+		//return $id;
+	}
+	public function getUserInfo($id)
+	{
+		$container = new Container();
+		global $container;
+	    $pdo = $container->get('PDO');
+	    $query = $container->get('Aura\SqlQuery\QueryFactory');
+	    $db = new QueryBuilder($pdo, $query);
+	    $user = $db->getOne('users', $id);
+	    return $user;
+	}
+
+	public static function getId()
+	{
+		$userId = $this->auth->getUserId();
+		return $userId;
+	}
+
+	public function auth()
+	{
+		$container = new Container();
+		global $container;
+        return new Auth($container->get('PDO'));
 	}
 
 	public function getAll($table)

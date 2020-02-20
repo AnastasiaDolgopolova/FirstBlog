@@ -42,8 +42,10 @@ class LoginController
 		catch (\Delight\Auth\TooManyRequestsException $e) {
 		    flash()->error(['Too many requests']);
 		}
-		redirect("/login");
-		exit;
+		//redirect("/login");
+		//exit;
+		header('Location: /login');
+        die;
 	}
 
 	public function logout()

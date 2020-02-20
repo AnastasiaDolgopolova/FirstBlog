@@ -19,12 +19,9 @@ class HomeController
 	
 	public function homepage()
 	{
-		/*if ($this->auth->isLoggedIn()) {
-            $this->user->index();
-        }*/
 		$posts=$this->post->getAll('posts');
-		//var_dump($posts);die;
-		echo $this->templates->render('home-page', ['postsView' => $posts]);
+		//var_dump($userInfo);die;
+		echo $this->templates->render('home-page', ['postsView' => $posts, 'user' => $userInfo]);
 		
 	}
 
